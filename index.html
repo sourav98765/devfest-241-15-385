@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tender Document Package Builder</title>
+  <meta name="description" content="Match tender PDFs, check missing and expired documents, and download a complete PDF package. English and Bangla. All processing stays in your browser." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="./" aria-label="Tender Document Package Builder"><img src="./favicon.svg" alt="" width="40" height="40" /><span><strong>TenderDesk</strong><small data-i18n="appName">Document Package Builder</small></span></a>
+    <div class="header-right"><span class="privacy"><span class="privacy-icon" aria-hidden="true">⌁</span><span data-i18n="private">Your files stay on this device</span></span><button id="language" class="language-button">বাংলা</button></div>
+  </header>
+  <main>
+    <div class="workspace-heading"><div><p class="eyebrow" data-i18n="workspaceLabel">TENDER WORKSPACE</p><h1 data-i18n="workspace">Build your document package</h1></div><div class="heading-actions"><button id="sample" class="secondary" data-i18n="loadSample">Load sample pack</button><button id="load-requirements" class="primary light" data-i18n="loadRequirements">Open requirements JSON</button></div></div>
+    <input id="requirements-input" type="file" accept=".json,application/json" hidden />
+    <input id="pdf-input" type="file" accept=".pdf,application/pdf" multiple hidden />
+    <section id="tender-details" class="tender-card" aria-label="Tender details"></section>
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <div class="workspace-grid">
+      <section class="file-panel panel" aria-labelledby="files-title">
+        <div class="panel-heading"><div><p class="step-label" data-i18n="step2">02 / ADD YOUR FILES</p><h2 id="files-title" data-i18n="fileLibrary">PDF library</h2></div><span id="file-count" class="count-pill">0 / 30</span></div>
+        <div id="drop-zone" class="drop-zone"><svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M18 23V6m0 0-6 6m6-6 6 6M7 23v6h22v-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><strong data-i18n="dropFiles">Drop your PDFs here</strong><span data-i18n="orChoose">or choose multiple files</span><button id="upload" class="secondary" data-i18n="choosePDFs">Choose PDFs</button><small data-i18n="uploadLimits">Up to 30 files · 50 MB total</small></div>
+        <div class="file-usage"><span id="storage-usage">0 MB / 50 MB</span><span id="upload-progress" role="status" aria-live="polite"></span></div>
+        <div id="upload-report" class="upload-report" hidden></div>
+        <div id="file-list" class="file-list"></div>
+        <div class="file-panel-note" data-i18n="fileNote">View a PDF to identify it, then choose it in the checklist. Identical copies are marked automatically.</div>
+      </section>
+      <div class="checklist-column">
+        <section class="readiness-card" aria-labelledby="ready-title">
+          <div class="ready-top"><div><p class="step-label" data-i18n="step3">03 / CHECK & PACKAGE</p><h2 id="ready-title"></h2><p id="ready-summary"></p></div><button id="generate" class="primary" data-i18n="generate" aria-describedby="blocking-reasons">Generate package PDF</button></div>
+          <div class="progress-track"><div id="progress-fill"></div></div>
+          <div id="blocking-reasons" class="blocking-reasons"></div>
+          <div id="download-result" class="download-result" hidden></div>
+        </section>
+        <section class="checklist-panel panel" aria-labelledby="checklist-title">
+          <div class="panel-heading"><div><p class="step-label" data-i18n="step1">01 / MATCH REQUIREMENTS</p><h2 id="checklist-title" data-i18n="checklist">Document checklist</h2></div><div class="checklist-actions"><button id="auto-match" class="text-button" data-i18n="autoMatch">Match filenames</button><button id="export-csv" class="text-button" data-i18n="exportCSV">Export CSV</button></div></div>
+          <div class="status-summary" id="status-summary"></div>
+          <div class="list-head" aria-hidden="true"><span data-i18n="order">No.</span><span data-i18n="document">Required document</span><span data-i18n="matchedPDF">Matched PDF</span><span data-i18n="expiryDate">Expiry date</span><span data-i18n="status">Status</span></div>
+          <ol id="checklist" class="checklist"></ol>
+          <div class="checklist-foot"><span data-i18n="expiryRule">Valid on the deadline counts as OK. Unprovided optional documents are skipped.</span></div>
+        </section>
+      </div>
+    </div>
+    <footer><span data-i18n="footerPrivacy">PDFs are checked and combined entirely in your browser.</span><span data-i18n="coverEnglish">The package cover is always in English.</span></footer>
+  </main>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

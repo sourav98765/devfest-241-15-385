@@ -1,0 +1,10 @@
+{
+  "project": "Tender Document Package Builder",
+  "source_commit": "31b0d0baade9dce562e06ab39bdc17d876dcd79b",
+  "application_source_commit": "dc3f6ab4fb1fae6dda7226e3f94db9836aa45b27",
+  "history_bundle": "TenderDesk_History.bundle",
+  "hosting": "Firebase Hosting",
+  "hosting_directory": "dist",
+  "setup_guide": "SETUP_VSCODE.md",
+  "sample_output": "output/T-2026-0417_Package.pdf"
+}

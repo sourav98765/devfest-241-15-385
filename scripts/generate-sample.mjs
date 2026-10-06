@@ -1,0 +1,10 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {generatePackage,packageFilename} from '../src/pdf.js';
+import {sampleWorkspace} from './sample-workspace.mjs';
+const workspace=await sampleWorkspace();
+const fontBytes=new Uint8Array(await readFile(new URL('../public/assets/DejaVuSans.ttf',import.meta.url)));
+const bytes=await generatePackage({...workspace,fontBytes});
+await mkdir(new URL('../output/',import.meta.url),{recursive:true});
+const name=packageFilename(workspace.data.tender.tender_id);
+await writeFile(new URL('../output/'+name,import.meta.url),bytes);
+console.log('Generated output/'+name+' using the same PDF function as the browser app.');
