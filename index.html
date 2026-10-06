@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 <head>
@@ -48,3 +49,135 @@
   <script type="module" src="/src/app.js"></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Tender Package Builder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f4;--panel:#fff;--ink:#14232b;--mute:#5d6e78;--line:#d5dce1;--brand:#0e4f66;--brand2:#0b3d4f;--ok:#17703f;--okb:#e0f3e8;--bad:#b3261e;--badb:#fde8e6;--warn:#8a5a00;--warnb:#fff1d1;--gray:#55646d;--grayb:#e8ecef;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f171c;--panel:#17222a;--ink:#e6edf1;--mute:#9bacb6;--line:#2c3b45;--brand:#5fb4d2;--brand2:#1d6b88;--ok:#6fd49a;--okb:#143a27;--bad:#ff8a80;--badb:#42201d;--warn:#f1c35c;--warnb:#3d3010;--gray:#b3c0c8;--grayb:#26333b}}
+:root[data-theme="dark"]{--bg:#0f171c;--panel:#17222a;--ink:#e6edf1;--mute:#9bacb6;--line:#2c3b45;--brand:#5fb4d2;--brand2:#1d6b88;--ok:#6fd49a;--okb:#143a27;--bad:#ff8a80;--badb:#42201d;--warn:#f1c35c;--warnb:#3d3010;--gray:#b3c0c8;--grayb:#26333b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Hind Siliguri",system-ui,sans-serif}
+header{background:var(--brand2);color:#fff;padding:14px 20px}
+.top{max-width:1180px;margin:auto;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+h1{font-size:20px;margin:0;font-weight:700}
+.lang{display:flex;border:1px solid #ffffff80;border-radius:8px;overflow:hidden}
+.lang button{background:transparent;color:#fff;border:0;padding:6px 14px;font:inherit;cursor:pointer}
+.lang button[aria-pressed=true]{background:#fff;color:var(--brand2);font-weight:600}
+main{max-width:1180px;margin:auto;padding:18px 16px 40px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:18px}
+h2{font-size:17px;margin:0 0 10px;font-weight:600}
+.tender{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 18px}
+.tender dt{font-size:13px;color:var(--mute)}.tender dd{margin:0;font-weight:600}
+.btn{font:inherit;border-radius:8px;border:1px solid var(--brand);background:var(--panel);color:var(--brand);padding:8px 14px;cursor:pointer;font-weight:500}
+.btn.pri{background:var(--brand2);color:#fff;border-color:var(--brand2);padding:12px 16px;font-size:17px;width:100%;font-weight:600}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #f2a900;outline-offset:2px}
+.drop{border:2px dashed var(--brand);border-radius:10px;padding:18px;text-align:center;color:var(--mute);background:var(--bg)}
+.drop b{color:var(--ink)}
+.req{border:1px solid var(--line);border-left-width:6px;border-radius:8px;padding:12px;margin-bottom:10px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) auto;gap:10px 14px;align-items:center}
+@media(max-width:700px){.req{grid-template-columns:1fr}}
+.req.ok{border-left-color:var(--ok)}.req.bad{border-left-color:var(--bad)}.req.warn{border-left-color:var(--warn)}.req.gray{border-left-color:var(--gray)}
+.rt{font-weight:600}.tags{font-size:13px;color:var(--mute)}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select,input[type=date]{font:inherit;padding:7px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);min-width:0;max-width:100%}
+.clr{background:none;border:0;color:var(--bad);cursor:pointer;font:inherit;text-decoration:underline}
+.pill{display:inline-flex;gap:6px;align-items:center;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:600;white-space:nowrap}
+.pill.ok{background:var(--okb);color:var(--ok)}.pill.bad{background:var(--badb);color:var(--bad)}.pill.warn{background:var(--warnb);color:var(--warn)}.pill.gray{background:var(--grayb);color:var(--gray)}
+.file{border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.file .n{font-weight:600;word-break:break-all}.file .m{font-size:13px;color:var(--mute)}
+.dup{display:inline-block;margin-top:4px;background:var(--warnb);color:var(--warn);font-size:13px;font-weight:600;border-radius:6px;padding:2px 8px}
+.rej{background:var(--badb);color:var(--bad);border-radius:8px;padding:10px;margin-bottom:8px;font-size:14px}
+aside .sticky{position:sticky;top:12px}
+.sum{font-size:28px;font-weight:700;line-height:1.1}
+.bar{height:10px;background:var(--grayb);border-radius:6px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:var(--ok);transition:width .3s}
+ul.why{padding-left:18px;margin:8px 0 14px;color:var(--bad);font-size:14px}
+.good{background:var(--okb);color:var(--ok);padding:10px;border-radius:8px;margin:8px 0 14px;font-weight:600}
+.note{font-size:13px;color:var(--mute)}
+.theme{background:transparent;border:1px solid #ffffff80;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><div class="top"><h1 id="appname"></h1>
+<div style="display:flex;gap:8px"><button class="theme" id="th" aria-label="Toggle dark mode">◐</button>
+<div class="lang" role="group"><button data-l="en" aria-pressed="true">English</button><button data-l="bn" aria-pressed="false">বাংলা</button></div></div></div></header>
+<main><div>
+<section><h2 id="h_tender"></h2><dl class="tender" id="tender"></dl>
+<p style="margin:12px 0 0"><button class="btn" id="loadreq"></button> <span class="note" id="loadnote"></span></p></section>
+<section><h2 id="h_up"></h2><div class="drop" id="drop"></div><input type="file" id="ff" accept=".pdf,application/pdf" multiple hidden><div id="files" style="margin-top:12px"></div></section>
+<section><h2 id="h_req"></h2><div id="reqs"></div></section></div>
+<aside><div class="sticky"><section><h2 id="h_chk"></h2><div class="sum" id="sum"></div><div class="bar"><i id="barfill"></i></div><div id="why"></div><input type="file" id="fr" accept=".json,application/json" hidden>
+<button class="btn pri" id="gen"></button><p class="note" id="gnote" style="margin-bottom:0"></p><div id="dlslot"></div></section></div></aside></main>
+<script>
+const I={en:{app:"Tender Document Package Builder",ht:"Tender details",hu:"Upload your PDF files",hr:"Match files and enter expiry dates",hc:"Package check",id:"Tender ID",ti:"Title",pe:"Procuring entity",bd:"Bidder",dl:"Submission deadline",load:"Load requirements.json",loaded:"Loaded: {n} required documents",nr:"Load requirements.json first.",drop:"<b>Drag PDF files here</b> or click to choose<br>Up to 30 files, 50 MB total",pages:"pages",remove:"Remove",none:"No files yet. Add your PDF files above.",dupof:"Duplicate of",choose:"— Choose a file —",clear:"Clear",exp:"Expiry date",mand:"Required",opt:"Optional",hasx:"Has expiry",Missing:"Missing","Expiry date needed":"Expiry date needed",Expired:"Expired","Not provided":"Not provided",OK:"OK",probs:"problems to fix",prob1:"problem to fix",ready:"Ready to generate",gen:"Generate package",busy:"Creating package…",dn:"Download",gn:"Fix all red items to enable this button.",used:"(used)",notpdf:"is not a PDF and was rejected. Please upload PDF files only.",bad:"is damaged and cannot be read.",enc:"is password-protected. Remove the password and upload again.",lim:"was not added: limit is 30 files and 50 MB in total.",dupmsg:"Same content as an existing file.",badjson:"This is not a valid requirements.json file.",err:"Could not create the package. Check your files and try again.",done:"Package ready. File: "},
+bn:{app:"টেন্ডার ডকুমেন্ট প্যাকেজ বিল্ডার",ht:"টেন্ডারের তথ্য",hu:"আপনার পিডিএফ ফাইল আপলোড করুন",hr:"ফাইল মেলান ও মেয়াদ লিখুন",hc:"প্যাকেজ যাচাই",id:"টেন্ডার আইডি",ti:"শিরোনাম",pe:"ক্রয়কারী প্রতিষ্ঠান",bd:"দরদাতা",dl:"জমাদানের শেষ তারিখ",load:"requirements.json লোড করুন",loaded:"লোড হয়েছে: {n}টি প্রয়োজনীয় নথি",nr:"আগে requirements.json লোড করুন।",drop:"<b>পিডিএফ ফাইল এখানে টেনে আনুন</b> বা ক্লিক করে বাছাই করুন<br>সর্বোচ্চ ৩০টি ফাইল, মোট ৫০ এমবি",pages:"পৃষ্ঠা",remove:"মুছুন",none:"এখনও কোনো ফাইল নেই। উপরে পিডিএফ ফাইল যোগ করুন।",dupof:"এর হুবহু কপি:",choose:"— ফাইল বাছাই করুন —",clear:"সরান",exp:"মেয়াদ শেষের তারিখ",mand:"আবশ্যক",opt:"ঐচ্ছিক",hasx:"মেয়াদ আছে",Missing:"অনুপস্থিত","Expiry date needed":"মেয়াদের তারিখ দিন",Expired:"মেয়াদোত্তীর্ণ","Not provided":"দেওয়া হয়নি",OK:"ঠিক আছে",probs:"টি সমস্যা সমাধান করুন",prob1:"টি সমস্যা সমাধান করুন",ready:"প্যাকেজ তৈরির জন্য প্রস্তুত",gen:"প্যাকেজ তৈরি করুন",busy:"প্যাকেজ তৈরি হচ্ছে…",dn:"ডাউনলোড",gn:"লাল চিহ্নিত সব সমস্যা ঠিক করলে বোতামটি চালু হবে।",used:"(ব্যবহৃত)",notpdf:"পিডিএফ নয়, তাই বাতিল হয়েছে। শুধু পিডিএফ ফাইল দিন।",bad:"নষ্ট, পড়া যাচ্ছে না।",enc:"পাসওয়ার্ড দেওয়া। পাসওয়ার্ড সরিয়ে আবার আপলোড করুন।",lim:"যোগ হয়নি: সর্বোচ্চ ৩০টি ফাইল ও মোট ৫০ এমবি।",dupmsg:"আগের একটি ফাইলের সাথে একই বিষয়বস্তু।",badjson:"এটি সঠিক requirements.json ফাইল নয়।",err:"প্যাকেজ তৈরি করা যায়নি। ফাইল দেখে আবার চেষ্টা করুন।",done:"প্যাকেজ তৈরি হয়েছে। ফাইল: "}};
+const bnD=s=>String(s).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+let L=localStorage.getItem("lang")||"en",T=null,R=[],files=[],rej=[],match={},exp={},pkg=null,busy=false,seq=0;
+try{}catch(e){}
+const $=id=>document.getElementById(id),t=k=>I[L][k]??k,num=n=>L==="bn"?bnD(n):n;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const dupG=f=>files.filter(o=>o.h===f.h&&o.id!==f.id);
+function st(r){const f=match[r.id];if(!f)return r.mandatory?"Missing":"Not provided";if(r.has_expiry){if(!exp[r.id])return"Expiry date needed";if(exp[r.id]<T.submission_deadline)return"Expired"}return"OK"}
+const cls={Missing:"bad","Expiry date needed":"bad",Expired:"bad","Not provided":"gray",OK:"ok"},ic={bad:"✕",ok:"✓",gray:"–"};
+const blocking=()=>R.filter(r=>cls[st(r)]==="bad");
+function render(){document.documentElement.lang=L;
+$("appname").textContent=t("app");$("h_tender").textContent=t("ht");$("h_up").textContent=t("hu");$("h_req").textContent=t("hr");$("h_chk").textContent=t("hc");$("loadreq").textContent=t("load");$("drop").innerHTML=t("drop");
+$("tender").innerHTML=T?`<div><dt>${t("id")}</dt><dd>${esc(T.tender_id)}</dd></div><div><dt>${t("ti")}</dt><dd>${esc(T.title)}</dd></div><div><dt>${t("pe")}</dt><dd>${esc(T.procuring_entity)}</dd></div><div><dt>${t("bd")}</dt><dd>${esc(T.bidder)}</dd></div><div><dt>${t("dl")}</dt><dd>${num(T.submission_deadline)}</dd></div>`:`<p class="note">${t("nr")}</p>`;
+$("loadnote").textContent=T?"✓ "+t("loaded").replace("{n}",num(R.length)):"";
+const usedBy={};Object.entries(match).forEach(([r,f])=>usedBy[f]=r);
+$("files").innerHTML=rej.map(x=>`<div class="rej">✕ <b>${esc(x.n)}</b> ${t(x.k)}</div>`).join("")+(files.length?files.map(f=>{const d=dupG(f);return`<div class="file"><div><div class="n">${esc(f.name)}</div><div class="m">${num(f.pg)} ${t("pages")} · ${num(Math.ceil(f.size/1024))} KB</div>${d.length?`<span class="dup">⚠ ${t("dupof")} ${esc(d.map(x=>x.name).join(", "))}</span>`:""}</div><button class="clr" data-rm="${f.id}">${t("remove")}</button></div>`}).join(""):`<p class="note">${t("none")}</p>`);
+$("reqs").innerHTML=R.map(r=>{const s=st(r),c=cls[s],ti=L==="bn"?r.title_bn||r.title_en:r.title_en;
+const opts=files.map(f=>{const u=usedBy[f.id]&&usedBy[f.id]!==r.id,dis=u||dupG(f).some(o=>usedBy[o.id]&&usedBy[o.id]!==r.id);return`<option value="${f.id}" ${match[r.id]===f.id?"selected":""} ${dis?"disabled":""}>${esc(f.name)}${u?" "+t("used"):""}</option>`}).join("");
+return`<div class="req ${c}"><div><div class="rt">${esc(ti)}</div><div class="tags">${r.mandatory?t("mand"):t("opt")}${r.has_expiry?" · "+t("hasx"):""}</div></div>
+<div class="ctl"><select data-m="${r.id}" aria-label="${esc(ti)}"><option value="">${t("choose")}</option>${opts}</select>${match[r.id]?`<button class="clr" data-c="${r.id}">${t("clear")}</button>`:""}${r.has_expiry&&match[r.id]?`<label class="tags">${t("exp")} <input type="date" data-e="${r.id}" value="${exp[r.id]||""}"></label>`:""}</div>
+<span class="pill ${c}">${ic[c]} ${t(s)}</span></div>`}).join("");
+const bl=blocking(),ok=R.length-bl.length,dis=!T||bl.length||busy;
+$("sum").textContent=!T?"–":bl.length?num(bl.length)+" "+t(bl.length>1?"probs":"prob1"):"✓ "+t("ready");$("sum").style.color=bl.length?"var(--bad)":"var(--ok)";
+$("barfill").style.width=(R.length?ok/R.length*100:0)+"%";
+$("why").innerHTML=bl.length?`<ul class="why">${bl.map(r=>`<li>${r.id} ${esc(L==="bn"?r.title_bn||r.title_en:r.title_en)}: ${t(st(r))}</li>`).join("")}</ul>`:T?`<div class="good">${t("ready")}</div>`:"";
+$("gen").disabled=!!dis;$("gen").textContent=busy?t("busy"):t("gen");$("gnote").textContent=bl.length?t("gn"):"";
+$("dlslot").innerHTML=pkg?`<a class="btn pri" style="display:block;text-align:center;text-decoration:none;margin-top:10px" href="${pkg.url}" download="${esc(pkg.name)}">⬇ ${t("dn")}: ${esc(pkg.name)}</a>`:"";
+document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L))}
+const change=()=>{pkg=null;render()};
+async function sha(buf){const h=await crypto.subtle.digest("SHA-256",buf);return[...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,"0")).join("")}
+async function addFiles(list){rej=[];
+for(const f of list){
+if(!/\.pdf$/i.test(f.name)&&f.type!=="application/pdf"){rej.push({n:f.name,k:"notpdf"});continue}
+if(files.length>=30||files.reduce((a,x)=>a+x.size,0)+f.size>50*1048576){rej.push({n:f.name,k:"lim"});continue}
+const buf=await f.arrayBuffer(),u8=new Uint8Array(buf);
+if(String.fromCharCode(...u8.slice(0,5))!=="%PDF-"){rej.push({n:f.name,k:"notpdf"});continue}
+try{const d=await PDFLib.PDFDocument.load(u8);files.push({id:"f"+(++seq),name:f.name,size:f.size,bytes:u8,pg:d.getPageCount(),h:await sha(buf)})}
+catch(e){rej.push({n:f.name,k:/encrypt/i.test(e.message)?"enc":"bad"})}}
+change()}
+function foot(p,txt,font){const b=p.getMediaBox(),{x,y,width:w,height:h}=b,rot=((p.getRotation().angle%360)+360)%360,tw=font.widthOfTextAtSize(txt,10),o={size:10,font,color:PDFLib.rgb(.1,.1,.1)};let nb,pos,r=0;
+if(rot===0){nb=[x,y-36,w,h+36];pos={x:x+w/2-tw/2,y:y-23}}
+else if(rot===90){nb=[x,y,w+36,h];pos={x:x+w+23,y:y+h/2-tw/2};r=90}
+else if(rot===180){nb=[x,y,w,h+36];pos={x:x+w/2+tw/2,y:y+h+23};r=180}
+else{nb=[x-36,y,w+36,h];pos={x:x-23,y:y+h/2+tw/2};r=270}
+p.setMediaBox(...nb);p.setCropBox(...nb);p.drawText(txt,{...o,...pos,rotate:PDFLib.degrees(r)})}
+async function generate(){busy=true;pkg=null;render();
+try{const P=PDFLib,out=await P.PDFDocument.create(),fb=await out.embedFont(P.StandardFonts.HelveticaBold),fr=await out.embedFont(P.StandardFonts.Helvetica);
+const inc=[...R].sort((a,b)=>a.order-b.order).filter(r=>match[r.id]);
+const c=out.addPage([595,842]);let y=780;const tx=(s,x,yy,sz,f)=>c.drawText(s,{x,y:yy,size:sz,font:f||fr,color:P.rgb(.05,.25,.33)});
+tx("Tender Document Package",50,y,24,fb);y-=40;
+[["Tender ID",T.tender_id],["Title",T.title],["Procuring entity",T.procuring_entity],["Bidder",T.bidder],["Submission deadline",T.submission_deadline],["Package made on",new Date().toISOString().slice(0,10)]].forEach(([k,v])=>{tx(k+":",50,y,12,fb);tx(String(v),190,y,12);y-=22});
+y-=14;tx("Included documents",50,y,14,fb);y-=24;inc.forEach((r,i)=>{tx(`${i+1}. ${r.title_en}`,60,y,12);y-=19});
+for(const r of inc){const f=files.find(x=>x.id===match[r.id]),src=await P.PDFDocument.load(f.bytes),pgs=await out.copyPages(src,src.getPageIndices());pgs.forEach(p=>out.addPage(p))}
+const all=out.getPages();all.forEach((p,i)=>foot(p,`${T.tender_id} | Page ${i+1} of ${all.length}`,fr));
+const bytes=await out.save();pkg={url:URL.createObjectURL(new Blob([bytes],{type:"application/pdf"})),name:`${T.tender_id}_Package.pdf`}}
+catch(e){console.error(e);alert(t("err"))}
+busy=false;render()}
+document.addEventListener("change",e=>{const d=e.target.dataset;if(d.m!==undefined){e.target.value?match[d.m]=e.target.value:delete match[d.m];change()}if(d.e!==undefined){exp[d.e]=e.target.value;change()}});
+document.addEventListener("click",e=>{const d=e.target.dataset;if(d.l){L=d.l;localStorage.setItem("lang",L);render()}if(d.c){delete match[d.c];change()}if(d.rm){files=files.filter(f=>f.id!==d.rm);for(const k in match)if(match[k]===d.rm)delete match[k];change()}});
+$("loadreq").onclick=()=>$("fr").click();$("drop").onclick=()=>$("ff").click();
+$("fr").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f)return;try{const j=JSON.parse(await f.text());if(!j.tender||!Array.isArray(j.requirements))throw 0;T=j.tender;R=j.requirements.sort((a,b)=>a.order-b.order);match={};exp={};change()}catch{alert(t("badjson"))}};
+$("ff").onchange=e=>{addFiles([...e.target.files]);e.target.value=""};
+["dragover","drop"].forEach(n=>$("drop").addEventListener(n,e=>{e.preventDefault();if(n==="drop")addFiles([...e.dataTransfer.files])}));
+$("gen").onclick=generate;
+$("th").onclick=()=>{const r=document.documentElement,dk=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=dk?"light":"dark"};
+render();
+</script></body></html>
+>>>>>>> 8c56278c7b3efb5caed694abdab0a06e24d55ed9
