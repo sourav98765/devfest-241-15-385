@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Tender Package Builder – UI Mockup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f4;--panel:#fff;--ink:#14232b;--mute:#5d6e78;--line:#d5dce1;--brand:#0e4f66;--brand2:#0b3d4f;--ok:#17703f;--okb:#e0f3e8;--bad:#b3261e;--badb:#fde8e6;--warn:#8a5a00;--warnb:#fff1d1;--gray:#55646d;--grayb:#e8ecef;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f171c;--panel:#17222a;--ink:#e6edf1;--mute:#9bacb6;--line:#2c3b45;--brand:#5fb4d2;--brand2:#1d6b88;--ok:#6fd49a;--okb:#143a27;--bad:#ff8a80;--badb:#42201d;--warn:#f1c35c;--warnb:#3d3010;--gray:#b3c0c8;--grayb:#26333b}}
+:root[data-theme="dark"]{--bg:#0f171c;--panel:#17222a;--ink:#e6edf1;--mute:#9bacb6;--line:#2c3b45;--brand:#5fb4d2;--brand2:#1d6b88;--ok:#6fd49a;--okb:#143a27;--bad:#ff8a80;--badb:#42201d;--warn:#f1c35c;--warnb:#3d3010;--gray:#b3c0c8;--grayb:#26333b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Hind Siliguri",system-ui,sans-serif}
+header{background:var(--brand2);color:#fff;padding:14px 20px}
+.top{max-width:1180px;margin:auto;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+h1{font-size:20px;margin:0;font-weight:700}
+.lang{display:flex;border:1px solid #ffffff80;border-radius:8px;overflow:hidden}
+.lang button{background:transparent;color:#fff;border:0;padding:6px 14px;font:inherit;cursor:pointer}
+.lang button[aria-pressed=true]{background:#fff;color:var(--brand2);font-weight:600}
+main{max-width:1180px;margin:auto;padding:18px 16px 40px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:18px}
+h2{font-size:17px;margin:0 0 10px;font-weight:600}
+.tender{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 18px}
+.tender dt{font-size:13px;color:var(--mute)}.tender dd{margin:0;font-weight:600}
+.btn{font:inherit;border-radius:8px;border:1px solid var(--brand);background:var(--panel);color:var(--brand);padding:8px 14px;cursor:pointer;font-weight:500}
+.btn.pri{background:var(--brand2);color:#fff;border-color:var(--brand2);padding:12px 16px;font-size:17px;width:100%;font-weight:600}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #f2a900;outline-offset:2px}
+.drop{border:2px dashed var(--brand);border-radius:10px;padding:18px;text-align:center;color:var(--mute);background:var(--bg)}
+.drop b{color:var(--ink)}
+.req{border:1px solid var(--line);border-left-width:6px;border-radius:8px;padding:12px;margin-bottom:10px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) auto;gap:10px 14px;align-items:center}
+@media(max-width:700px){.req{grid-template-columns:1fr}}
+.req.ok{border-left-color:var(--ok)}.req.bad{border-left-color:var(--bad)}.req.warn{border-left-color:var(--warn)}.req.gray{border-left-color:var(--gray)}
+.rt{font-weight:600}.tags{font-size:13px;color:var(--mute)}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select,input[type=date]{font:inherit;padding:7px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);min-width:0;max-width:100%}
+.clr{background:none;border:0;color:var(--bad);cursor:pointer;font:inherit;text-decoration:underline}
+.pill{display:inline-flex;gap:6px;align-items:center;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:600;white-space:nowrap}
+.pill.ok{background:var(--okb);color:var(--ok)}.pill.bad{background:var(--badb);color:var(--bad)}.pill.warn{background:var(--warnb);color:var(--warn)}.pill.gray{background:var(--grayb);color:var(--gray)}
+.file{border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.file .n{font-weight:600;word-break:break-all}.file .m{font-size:13px;color:var(--mute)}
+.dup{display:inline-block;margin-top:4px;background:var(--warnb);color:var(--warn);font-size:13px;font-weight:600;border-radius:6px;padding:2px 8px}
+.rej{background:var(--badb);color:var(--bad);border-radius:8px;padding:10px;margin-bottom:8px;font-size:14px}
+aside .sticky{position:sticky;top:12px}
+.sum{font-size:28px;font-weight:700;line-height:1.1}
+.bar{height:10px;background:var(--grayb);border-radius:6px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:var(--ok);transition:width .3s}
+ul.why{padding-left:18px;margin:8px 0 14px;color:var(--bad);font-size:14px}
+.good{background:var(--okb);color:var(--ok);padding:10px;border-radius:8px;margin:8px 0 14px;font-weight:600}
+.note{font-size:13px;color:var(--mute)}
+.theme{background:transparent;border:1px solid #ffffff80;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><div class="top"><h1 id="appname"></h1>
+<div style="display:flex;gap:8px"><button class="theme" id="th" aria-label="Toggle dark mode">◐</button>
+<div class="lang" role="group"><button data-l="en" aria-pressed="true">English</button><button data-l="bn" aria-pressed="false">বাংলা</button></div></div></div></header>
+<main><div>
+<section><h2 id="h_tender"></h2><dl class="tender" id="tender"></dl>
+<p style="margin:12px 0 0"><button class="btn" id="loadreq"></button> <span class="note" id="loadnote"></span></p></section>
+<section><h2 id="h_up"></h2><div class="drop" id="drop"></div><p style="margin:10px 0 0"><button class="btn" id="addsample"></button></p><div id="files" style="margin-top:12px"></div></section>
+<section><h2 id="h_req"></h2><div id="reqs"></div></section></div>
+<aside><div class="sticky"><section><h2 id="h_chk"></h2><div class="sum" id="sum"></div><div class="bar"><i id="barfill"></i></div><div id="why"></div>
+<button class="btn pri" id="gen"></button><p class="note" id="gnote" style="margin-bottom:0"></p></section></div></aside></main>
+<script>
+const T={tender_id:"T-2026-0417",deadline:"2026-10-20",
+title:{en:"Supply of IT Equipment",bn:"আইটি সরঞ্জাম সরবরাহ"},entity:{en:"Example Directorate",bn:"উদাহরণ অধিদপ্তর"},bidder:"Example Company Ltd."};
+const R=[{id:"R01",en:"Trade License",bn:"ট্রেড লাইসেন্স",m:1,x:1},{id:"R02",en:"TIN Certificate",bn:"টিআইএন সনদ",m:1,x:0},{id:"R03",en:"VAT Certificate",bn:"ভ্যাট সনদ",m:1,x:1},{id:"R04",en:"Bank Solvency Letter",bn:"ব্যাংক সচ্ছলতা পত্র",m:1,x:1},{id:"R05",en:"Experience Certificate",bn:"অভিজ্ঞতার সনদ",m:0,x:0},{id:"R06",en:"Technical Proposal",bn:"কারিগরি প্রস্তাব",m:1,x:0}];
+const S=[{id:"f1",name:"trade_license.pdf",pg:4,kb:820,h:"a"},{id:"f2",name:"tin_certificate.pdf",pg:2,kb:310,h:"b"},{id:"f3",name:"tin_copy_final.pdf",pg:2,kb:310,h:"b"},{id:"f4",name:"vat_certificate.pdf",pg:3,kb:540,h:"c"},{id:"f5",name:"bank_letter.pdf",pg:1,kb:150,h:"d"}];
+const I={en:{app:"Tender Document Package Builder",ht:"Tender details",hu:"Upload your PDF files",hr:"Match files and enter expiry dates",hc:"Package check",id:"Tender ID",ti:"Title",pe:"Procuring entity",bd:"Bidder",dl:"Submission deadline",load:"Load requirements.json",loaded:"Loaded: 6 required documents",drop:"<b>Drag PDF files here</b> or click to choose files<br>Up to 30 files, 50 MB total",sample:"Add a sample file",pages:"pages",remove:"Remove",none:"No files yet. Add your PDF files above.",dupof:"Duplicate of",choose:"— Choose a file —",clear:"Clear",exp:"Expiry date",mand:"Required",opt:"Optional",hasx:"Has expiry",Missing:"Missing","Expiry date needed":"Expiry date needed",Expired:"Expired","Not provided":"Not provided",OK:"OK",probs:"problems to fix",prob1:"problem to fix",ready:"Ready to generate",gen:"Generate package",dn:"Download",gn:"Fix all red items to enable this button.",gd:"File name: ",used:"(used)",dupblock:"This file is a duplicate and is already matched elsewhere.",rej:"is not a PDF and was rejected. Please upload PDF files only.",fixm:"Add a file for",fixx:"Enter expiry date for",fixe:"Replace expired document:",gdone:"Package created: ",stm:"Missing",doc:"Document"},
+bn:{app:"টেন্ডার ডকুমেন্ট প্যাকেজ বিল্ডার",ht:"টেন্ডারের তথ্য",hu:"আপনার পিডিএফ ফাইল আপলোড করুন",hr:"ফাইল মেলান ও মেয়াদ লিখুন",hc:"প্যাকেজ যাচাই",id:"টেন্ডার আইডি",ti:"শিরোনাম",pe:"ক্রয়কারী প্রতিষ্ঠান",bd:"দরদাতা",dl:"জমাদানের শেষ তারিখ",load:"requirements.json লোড করুন",loaded:"লোড হয়েছে: ৬টি প্রয়োজনীয় নথি",drop:"<b>পিডিএফ ফাইল এখানে টেনে আনুন</b> বা ক্লিক করে বাছাই করুন<br>সর্বোচ্চ ৩০টি ফাইল, মোট ৫০ এমবি",sample:"নমুনা ফাইল যোগ করুন",pages:"পৃষ্ঠা",remove:"মুছুন",none:"এখনও কোনো ফাইল নেই। উপরে পিডিএফ ফাইল যোগ করুন।",dupof:"এর হুবহু কপি:",choose:"— ফাইল বাছাই করুন —",clear:"সরান",exp:"মেয়াদ শেষের তারিখ",mand:"আবশ্যক",opt:"ঐচ্ছিক",hasx:"মেয়াদ আছে",Missing:"অনুপস্থিত","Expiry date needed":"মেয়াদের তারিখ দিন",Expired:"মেয়াদোত্তীর্ণ","Not provided":"দেওয়া হয়নি",OK:"ঠিক আছে",probs:"টি সমস্যা সমাধান করুন",prob1:"টি সমস্যা সমাধান করুন",ready:"প্যাকেজ তৈরির জন্য প্রস্তুত",gen:"প্যাকেজ তৈরি করুন",dn:"ডাউনলোড",gn:"লাল চিহ্নিত সব সমস্যা ঠিক করলে বোতামটি চালু হবে।",gd:"ফাইলের নাম: ",used:"(ব্যবহৃত)",dupblock:"এই ফাইলটি ডুপ্লিকেট এবং আগেই অন্যত্র মেলানো হয়েছে।",rej:"পিডিএফ নয়, তাই বাতিল হয়েছে। শুধু পিডিএফ ফাইল দিন।",fixm:"ফাইল যোগ করুন:",fixx:"মেয়াদের তারিখ দিন:",fixe:"মেয়াদোত্তীর্ণ নথি বদলান:",gdone:"প্যাকেজ তৈরি হয়েছে: ",stm:"অনুপস্থিত",doc:"নথি"}};
+const bnDigits=s=>String(s).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+let L="en",files=S.slice(0,2).concat(S.slice(3,5)),rej=[],match={R01:"f1",R02:"f2"},exp={R01:"2027-03-01"},made=false;
+const $=id=>document.getElementById(id),t=k=>I[L][k]??k,num=n=>L==="bn"?bnDigits(n):n;
+const dupGroup=f=>files.filter(o=>o.h===f.h&&o.id!==f.id);
+function st(r){const f=match[r.id];if(!f)return r.m?"Missing":"Not provided";if(r.x){if(!exp[r.id])return"Expiry date needed";if(exp[r.id]<T.deadline)return"Expired"}return"OK"}
+const cls={Missing:"bad","Expiry date needed":"bad",Expired:"bad","Not provided":"gray",OK:"ok"},ic={bad:"✕",ok:"✓",gray:"–",warn:"!"};
+function render(){document.documentElement.lang=L;made=made&&false;
+$("appname").textContent=t("app");$("h_tender").textContent=t("ht");$("h_up").textContent=t("hu");$("h_req").textContent=t("hr");$("h_chk").textContent=t("hc");
+$("tender").innerHTML=`<div><dt>${t("id")}</dt><dd>${T.tender_id}</dd></div><div><dt>${t("ti")}</dt><dd>${T.title[L]}</dd></div><div><dt>${t("pe")}</dt><dd>${T.entity[L]}</dd></div><div><dt>${t("bd")}</dt><dd>${T.bidder}</dd></div><div><dt>${t("dl")}</dt><dd>${num(T.deadline)}</dd></div>`;
+$("loadreq").textContent=t("load");$("loadnote").textContent="✓ "+t("loaded");$("drop").innerHTML=t("drop");$("addsample").textContent="+ "+t("sample");
+const usedBy={};Object.entries(match).forEach(([r,f])=>usedBy[f]=r);
+$("files").innerHTML=rej.map(n=>`<div class="rej">✕ <b>${n}</b> ${t("rej")}</div>`).join("")+(files.length?files.map(f=>{const d=dupGroup(f);return`<div class="file"><div><div class="n">${f.name}</div><div class="m">${num(f.pg)} ${t("pages")} · ${num(f.kb)} KB</div>${d.length?`<span class="dup">⚠ ${t("dupof")} ${d.map(x=>x.name).join(", ")}</span>`:""}</div><button class="clr" data-rm="${f.id}">${t("remove")}</button></div>`}).join(""):`<p class="note">${t("none")}</p>`);
+$("reqs").innerHTML=R.map(r=>{const s=st(r),c=cls[s];const opts=files.map(f=>{const dis=usedBy[f.id]&&usedBy[f.id]!==r.id||(dupGroup(f).some(o=>usedBy[o.id]&&usedBy[o.id]!==r.id));return`<option value="${f.id}" ${match[r.id]===f.id?"selected":""} ${dis?"disabled":""}>${f.name}${usedBy[f.id]&&usedBy[f.id]!==r.id?" "+t("used"):""}</option>`}).join("");
+const fo=files.find(f=>f.id===match[r.id]);
+return`<div class="req ${c}"><div><div class="rt">${r[L]}</div><div class="tags">${r.m?t("mand"):t("opt")}${r.x?" · "+t("hasx"):""}</div></div>
+<div class="ctl"><select data-m="${r.id}" aria-label="${r[L]}"><option value="">${t("choose")}</option>${opts}</select>${match[r.id]?`<button class="clr" data-c="${r.id}">${t("clear")}</button>`:""}
+${r.x&&match[r.id]?`<label class="tags">${t("exp")} <input type="date" data-e="${r.id}" value="${exp[r.id]||""}"></label>`:""}</div>
+<span class="pill ${c}">${ic[c]} ${t(s)}</span></div>`}).join("");
+const bl=R.filter(r=>cls[st(r)]==="bad"),okc=R.length-bl.length;
+$("sum").textContent=bl.length?num(bl.length)+" "+t(bl.length>1?"probs":"prob1"):"✓ "+t("ready");$("sum").style.color=bl.length?"var(--bad)":"var(--ok)";
+$("barfill").style.width=(okc/R.length*100)+"%";
+$("why").innerHTML=bl.length?`<ul class="why">${bl.map(r=>{const s=st(r);return`<li>${r.id} ${r[L]}: ${t(s)}</li>`}).join("")}</ul>`:`<div class="good">${t("ready")}</div>`;
+$("gen").disabled=!!bl.length;$("gen").textContent=t("gen");$("gnote").textContent=bl.length?t("gn"):t("gd")+T.tender_id+"_Package.pdf";
+document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L))}
+document.addEventListener("change",e=>{const d=e.target.dataset;if(d.m!==undefined){if(e.target.value)match[d.m]=e.target.value;else{delete match[d.m]}}if(d.e!==undefined){exp[d.e]=e.target.value}render()});
+document.addEventListener("click",e=>{const d=e.target.dataset;if(d.l){L=d.l;render()}if(d.c){delete match[d.c];render()}
+if(d.rm){files=files.filter(f=>f.id!==d.rm);Object.keys(match).forEach(k=>{if(match[k]===d.rm)delete match[k]});render()}});
+$("addsample").onclick=()=>{const nx=S.find(s=>!files.includes(s));if(nx)files.push(nx);else if(!rej.length)rej.push("notes.docx");render()};
+$("drop").onclick=()=>{if(!rej.includes("notes.docx"))rej.push("notes.docx");render()};
+$("gen").onclick=()=>alert(t("gdone")+T.tender_id+"_Package.pdf");
+$("th").onclick=()=>{const r=document.documentElement,dk=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=dk?"light":"dark"};
+render();
+</script></body></html>
